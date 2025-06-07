@@ -19,7 +19,7 @@ resource "aws_sns_topic" "budget_alerts" {
   name = "budget-alerts"
 }
 
-resource "aws_sns_topic_subscription" "email_subscription_yamakawa" {
+resource "aws_sns_topic_subscription" "email_subscription_yamaguti" {
   topic_arn = aws_sns_topic.budget_alerts.arn
   protocol  = "email"
   endpoint  = "keita.yamaguti0117@gmail.com"
