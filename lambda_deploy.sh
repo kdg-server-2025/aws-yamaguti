@@ -4,7 +4,7 @@ set -exo pipefail
 # mktemp で作業用のディレクトリを作成 (カレントディレクトリが汚れないようにするため, 不要なファイルが zip に入らないようにするため)
 TEMPDIR=$(mktemp -d)
 # 各自のバケット名に書き換え
-ARTIFACT_BUCKET="kdg-aws-2025-honahuku-lambda-artifacts"
+ARTIFACT_BUCKET="kdg-aws-2025-yamaguti-lambda-artifacts"
 
 # function で使うバイナリをzipファイルに追加
 cp function/* "$TEMPDIR"
