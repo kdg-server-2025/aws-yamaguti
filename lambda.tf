@@ -1,10 +1,10 @@
 # CI/CD側でlambdaのソースコードを格納するための箱
-resource "aws_s3_bucket" "lambda_artifacts" {
-  bucket = "kdg-aws-2025-yamaguti-lambda-artifacts"
-  tags = {
-    Name = "kdg-aws-2025-yamaguti-lambda-artifacts"
-  }
-}
+#resource "aws_s3_bucket" "lambda_artifacts" {
+  #bucket = "kdg-aws-2025-yamaguti-lambda-artifacts"
+  #tags = {
+    #Name = "kdg-aws-2025-yamaguti-lambda-artifacts"
+  #}
+#}
 
 # ロールを生成
 resource "aws_iam_role" "lambda" {
@@ -59,26 +59,26 @@ resource "aws_iam_role_policy" "get_account_settings" {
 #}
 
 # (初回のみ)空のLambdaのファイルをS3にアップロード
-resource "aws_s3_object" "lambda_file" {
-  bucket = aws_s3_bucket.lambda_artifacts.id
-  key    = "lambda.zip"
-  source = "${path.module}/.temp_files/lambda.zip"
-}
+#resource "aws_s3_object" "lambda_file" {
+  #bucket = aws_s3_bucket.lambda_artifacts.id
+  #key    = "lambda.zip"
+  #source = "${path.module}/.temp_files/lambda.zip"
+#}
 #ここからしたをコメントアウトする
 # Lambda関数を生成
-resource "aws_lambda_function" "first_function" {
-  function_name = "first-function"
-  role          = aws_iam_role.lambda.arn
-  handler       = "bootstrap"
-  runtime       = "provided.al2023"
-  timeout       = 120
-  publish       = true
-  s3_bucket     = aws_s3_bucket.lambda_artifacts.id
-  s3_key        = aws_s3_object.lambda_file.key
-}
+#resource "aws_lambda_function" "first_function" {
+  #function_name = "first-function"
+  #role          = aws_iam_role.lambda.arn
+  #handler       = "bootstrap"
+  #runtime       = "provided.al2023"
+  #timeout       = 120
+  #publish       = true
+  #s3_bucket     = aws_s3_bucket.lambda_artifacts.id
+  #s3_key        = aws_s3_object.lambda_file.key
+#}
 
 # 外部からリクエストを飛ばすためのエンドポイント
-resource "aws_lambda_function_url" "first_function" {
-  function_name      = aws_lambda_function.first_function.function_name
-  authorization_type = "NONE"
-}
+#resource "aws_lambda_function_url" "first_function" {
+ #function_name      = aws_lambda_function.first_function.function_name
+  #authorization_type = "NONE"
+#}
